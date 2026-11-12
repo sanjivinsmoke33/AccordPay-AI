@@ -2,268 +2,337 @@
 
 ### Agree First. Pay With Confidence.
 
-**An AI-assisted invoice dispute resolution and negotiation platform powered by Google Gemini and PayPal.**
+**An AI-assisted B2B invoice dispute resolution platform combining price intelligence, evidence-based analysis, structured negotiation, and PayPal Sandbox payments.**
 
-AccordPay AI helps buyers and sellers resolve invoice disagreements through transparent price comparisons, evidence-based analysis, structured negotiation, and mutually agreed payments.
+**Built for the PayPal AI Hackathon 2026**
 
-Instead of arguing over unexpected charges, both parties can review the numbers, negotiate a fair settlement, and complete payment through PayPal Sandbox.
+---
+
+## Overview
+
+AccordPay AI addresses a common challenge in business transactions: **what happens when a buyer disagrees with a seller's invoice?**
+
+Instead of relying on lengthy email exchanges, manual price comparisons, and unstructured negotiations, AccordPay AI brings the dispute resolution process into one unified platform.
+
+The application enables businesses to compare supplier invoices against vendor price references, analyze discrepancies, negotiate settlements, and complete mutually approved payments through PayPal.
+
+**Our mission is simple: Help businesses reach an agreement before money changes hands.**
 
 ## The Problem
 
-Invoice disputes create friction between buyers and sellers.
+Invoice disagreements can delay payments and damage business relationships.
 
-A supplier may charge more than a buyer expects, leading to delayed payments, disagreements, and damaged business relationships.
+Consider a buyer who receives an invoice for $899 for a product that comparable vendors advertise at lower prices.
 
-Traditional dispute resolution can be slow, expensive, and difficult for small businesses.
+The buyer needs to determine whether the difference is justified, communicate the concern, and negotiate an acceptable price.
+
+Traditional workflows often require multiple tools and conversations, with limited transparency into how a settlement was reached.
 
 ## Our Solution
 
-AccordPay AI provides a structured workflow that helps both parties understand and resolve billing disagreements.
+AccordPay AI connects invoice review, price analysis, negotiation, and payment into a single workflow.
 
-**Billing Review → Price Comparison → AI Analysis → Negotiation → Agreement → Payment**
+**Invoice → Market Comparison → AI-Assisted Review → Negotiation → Mutual Agreement → PayPal Payment**
 
-The platform combines real mathematical calculations with AI-assisted analysis to make invoice disputes more transparent.
+The platform is designed to assist both parties rather than automatically decide who is right.
 
-## Key Features
+## Core Features
 
-### 1. Smart Billing Dashboard
+### 1. Invoice Management
 
-- Create and manage invoice dispute cases.
-- Review supplier invoices and buyer assessments.
-- View invoice status and disputed amounts.
-- Navigate directly to individual negotiation cases.
+- Create and review invoice dispute cases.
+- Record product details, quantities, and supplier charges.
+- Track the status of each dispute.
+- Access a dedicated negotiation workspace.
 
-### 2. Market Price Intelligence
+### 2. Transparent Price Intelligence
 
-- Compare product prices from multiple vendor quotations.
-- Enter vendor names, unit prices, and source URLs.
-- Calculate the median benchmark price.
-- Account for quantity, tax, and additional costs.
-- Identify invoice amounts above the calculated benchmark.
+AccordPay AI provides a calculation engine for comparing invoices with vendor quotations.
 
-**Note:** Vendor prices are currently supplied by the user. The platform does not independently verify live market prices.
+Users can enter:
 
-### 3. Gemini AI Invoice Analysis
+- Product specifications and quantity.
+- Vendor names and unit prices.
+- Source URLs for reference.
+- Applicable tax percentages and additional costs.
 
-- Analyze disputed invoice charges.
-- Review supplied agreements and supporting evidence.
+The system calculates:
+
+- Median vendor unit price.
+- Quantity-adjusted market benchmark.
+- Invoice-to-benchmark difference.
+- Percentage difference and potential savings.
+
+**Market prices are currently entered by users, not automatically verified or retrieved.** The calculations use the provided numerical inputs.
+
+### 3. Google Gemini AI Analysis
+
+AccordPay AI integrates Google Gemini to review invoice disputes and supporting evidence.
+
+The AI can:
+
+- Examine invoice discrepancies.
+- Review supplied agreements and buyer statements.
 - Identify potentially unsupported charges.
-- Recommend possible settlement amounts.
+- Suggest a possible settlement amount.
 - Highlight missing evidence.
 
-AI recommendations are advisory. Final decisions remain with the buyer and seller.
+AI-generated findings are advisory. Both parties retain control over the final agreement.
 
-### 4. Buyer–Seller Negotiation
+### 4. Negotiation Engine
 
-- Submit offers and counteroffers.
-- Suggest midpoint settlements.
-- Record negotiation history.
-- Require mutual agreement before payment.
+The buyer and seller can:
 
-### 5. PayPal Sandbox Integration
+- Submit settlement offers.
+- Respond with counteroffers.
+- Explore midpoint suggestions.
+- Review negotiation history.
+- Accept a mutually agreed amount.
 
-- Create PayPal Sandbox checkout orders.
-- Allow buyers to approve payment.
-- Verify PayPal order status.
-- Capture approved payments.
-- Record payment results.
+The platform records the negotiation process to provide an auditable sequence of actions.
 
-Sandbox transactions use test accounts and do not transfer real money.
+### 5. PayPal Sandbox Checkout
 
-### 6. Transparent Calculation Fallback
+Once both parties agree, AccordPay AI integrates with PayPal's Sandbox APIs to demonstrate the payment process.
 
-When Gemini is unavailable, AccordPay AI can provide rule-based invoice comparisons and mathematical settlement calculations.
+The integration supports:
 
-These calculations are clearly distinguished from AI-generated analysis.
+- Creating a PayPal checkout order.
+- Redirecting the buyer for payment approval.
+- Verifying the order status.
+- Capturing an approved Sandbox payment.
+- Recording the payment result.
 
-## Example Use Case
+**No real money is transferred during Sandbox testing.**
 
-A company receives an invoice for an Apple iPhone 16.
+### 6. Calculation-Based Fallback
 
-| Description | Amount |
+If Gemini is unavailable because of API quotas or connectivity issues, the platform can use transparent, rule-based calculations for supported invoice comparisons.
+
+The fallback does not impersonate an AI-generated result.
+
+---
+
+## Demonstration Scenario
+
+A supplier invoices a buyer $899 for an iPhone 16.
+
+The buyer enters two illustrative vendor quotations:
+
+| Item | Amount |
 |---|---:|
 | Supplier invoice | $899 |
-| Vendor A price (illustrative) | $829 |
-| Vendor B price (illustrative) | $699 |
-| Median benchmark | $764 |
+| Vendor A reference price | $829 |
+| Vendor B reference price | $699 |
+| Calculated median benchmark | $764 |
 | Invoice above benchmark | $135 |
 
-**Calculation:**
+**Benchmark calculation:**
 
-Median benchmark = ($829 + $699) / 2 = $764
+($829 + $699) ÷ 2 = $764
 
-Invoice difference = $899 − $764 = $135
+**Invoice difference:**
 
-The buyer can use this comparison to raise a dispute and begin negotiation.
+$899 − $764 = $135
 
-The prices above illustrate the calculation and are not presented as verified live quotations.
+The buyer can then raise a dispute, review the evidence, and negotiate with the seller.
+
+These reference prices are illustrative inputs rather than independently verified live offers. Actual comparisons should use matching product specifications and applicable costs.
+
+---
 
 ## Technology Stack
 
-| Component | Technology |
+| Layer | Technology |
 |---|---|
 | Backend | Python, FastAPI |
 | Frontend | HTML, CSS, JavaScript |
 | Database | SQLite |
-| AI | Google Gemini API |
-| Payments | PayPal REST APIs (Sandbox) |
-| HTTP client | HTTPX |
+| AI Analysis | Google Gemini API |
+| HTTP Integration | HTTPX |
+| Payment Processing | PayPal REST APIs (Sandbox) |
 | Configuration | Python Dotenv |
 
-## Getting Started
+## Architecture
+
+```text
+              BUYER / SELLER
+                    |
+                    v
+          INVOICE DASHBOARD
+                    |
+                    v
+          PRICE COMPARISON
+                    |
+                    v
+       MATHEMATICAL BENCHMARK
+                    |
+                    v
+          DISPUTE SUBMISSION
+                    |
+                    v
+           GEMINI AI ANALYSIS
+          /                  \
+    AI Available         AI Unavailable
+          |                    |
+    AI Recommendation    Rule-Based Review
+          \                  /
+                    |
+                    v
+            NEGOTIATION ENGINE
+                    |
+                    v
+             MUTUAL AGREEMENT
+                    |
+                    v
+           PAYPAL SANDBOX API
+                    |
+                    v
+           PAYMENT VERIFICATION
+```
+
+## Run Locally — Instructions for Judges
+
+The application is currently provided as a locally runnable prototype. It is not hosted at a public production URL.
 
 ### Prerequisites
 
 - Python 3.10 or newer
-- Internet connection for external APIs
-- Google Gemini API key for AI analysis
-- PayPal Developer Sandbox credentials for payment testing
+- Internet access for Gemini and PayPal integrations
+- Optional Google Gemini API key for AI analysis
+- PayPal Sandbox API credentials for payment testing
 
-### 1. Clone the Repository
+### Step 1 — Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/AccordPay-AI.git
+git clone https://github.com/sanjivinsmoke33/AccordPay-AI.git
 cd AccordPay-AI
 ```
 
-Replace `YOUR_USERNAME` with your GitHub username.
-
-### 2. Create a Virtual Environment
+### Step 2 — Create a Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate on Windows PowerShell:
+Windows PowerShell:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 3. Install Dependencies
+macOS/Linux:
 
 ```bash
-pip install -r requirements.txt
+source .venv/bin/activate
 ```
 
-### 4. Configure Environment Variables
+### Step 3 — Install Dependencies
 
-Create a `.env` file in the project root.
+```bash
+python -m pip install -r requirements.txt
+```
+
+### Step 4 — Configure API Credentials
+
+Create a `.env` file in the project root:
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key
+GEMINI_API_KEY=
 GEMINI_MODEL=gemini-2.5-flash
 
-PAYPAL_CLIENT_ID=your_sandbox_client_id
-PAYPAL_CLIENT_SECRET=your_sandbox_client_secret
+PAYPAL_CLIENT_ID=
+PAYPAL_CLIENT_SECRET=
 ```
 
-Choose a Gemini model available to your API project.
+Use a supported Gemini model available to the configured API project.
 
-Never commit your actual `.env` file or API credentials to GitHub.
+The billing interface, manual price comparisons, and arithmetic calculations can be demonstrated without API credentials.
 
-### 5. Run the Application
+Gemini analysis and PayPal Sandbox transactions require their respective credentials.
+
+**Do not commit API keys or credentials to the repository.**
+
+### Step 5 — Launch the Application
 
 ```bash
 python -m uvicorn main:app --reload
 ```
 
-Open:
+Open the application in a browser:
 
 http://127.0.0.1:8000
 
-API documentation:
+Interactive API documentation:
 
 http://127.0.0.1:8000/docs
 
-## How to Test
-
-1. Open the billing dashboard.
-2. Create an invoice case with product details and supplier charges.
-3. Enter comparable vendor prices and calculate the benchmark.
-4. Open the dispute and negotiation workspace.
-5. Raise an issue as the buyer.
-6. Analyze the evidence using Gemini, or use the calculation-based fallback when available.
-7. Submit a seller proposal.
-8. Accept the proposal or negotiate a counteroffer.
-9. Reach mutual agreement.
-10. Complete the PayPal Sandbox checkout workflow.
-
-For payment testing, use PayPal Sandbox buyer and seller accounts.
-
-## System Architecture
-
-```text
-Buyer / Seller
-      |
-      v
-Billing Dashboard
-      |
-      v
-Vendor Price Comparison
-      |
-      v
-Calculation Engine
-      |
-      v
-Invoice Dispute
-      |
-      v
-Gemini AI Analysis
-(or rule-based fallback)
-      |
-      v
-Negotiation Engine
-      |
-      v
-Mutual Agreement
-      |
-      v
-PayPal Sandbox Checkout
-      |
-      v
-Payment Verification
-```
-
-## Security and Limitations
-
-AccordPay AI is a hackathon prototype.
-
-- Buyer and seller roles are demonstrated without production authentication.
-- Market prices are manually entered and are not automatically verified.
-- AI analysis may be unavailable when API quotas are exhausted.
-- AI recommendations are not legally binding.
-- PayPal integration uses Sandbox credentials and test payments.
-- Production use would require authentication, authorization, secure document storage, audit protections, and additional payment safeguards.
-
-## Future Roadmap
-
-- Automated market price retrieval from supported vendor APIs.
-- PDF invoice and purchase order uploads.
-- AI-assisted line-item matching.
-- Secure buyer and seller accounts.
-- Real-time negotiation notifications.
-- Supplier reputation and historical pricing insights.
-- Production-ready payment and compliance integrations.
-
-## Why AccordPay AI?
-
-AccordPay AI brings together three important capabilities:
-
-**Price transparency + Assisted negotiation + Payment integration**
-
-Our goal is to make invoice disputes easier to understand, faster to negotiate, and simpler to resolve.
-
-## Hackathon Project
-
-Built for the **PayPal AI Hackathon 2026**.
-
-This project demonstrates how AI-assisted analysis and PayPal payment technology can work together to improve commercial transactions.
-
-## License
-
-This project is released under the MIT License. See the `LICENSE` file for details.
+These are local development URLs, accessible on the computer running the server.
 
 ---
 
-**AccordPay AI — Agree First. Pay With Confidence.**.
+## Suggested Evaluation Workflow
+
+Judges can evaluate AccordPay AI through the following sequence:
+
+1. Launch the application and open the billing dashboard.
+2. Create an invoice case with a supplier amount and product specifications.
+3. Enter two or more vendor reference prices.
+4. Calculate the benchmark and inspect the resulting price difference.
+5. Open the dispute negotiation workspace.
+6. Raise an issue as the buyer.
+7. Review Gemini analysis when configured, or the available calculation-based fallback.
+8. Submit a seller proposal and respond as the buyer.
+9. Reach mutual agreement.
+10. Test the PayPal Sandbox checkout flow using valid Sandbox accounts.
+
+**Important:** Buyer and seller role switching is simulated in the prototype. It is not a production authentication system.
+
+## Design Philosophy
+
+AccordPay AI is built around three principles:
+
+**Transparency:** Make invoice discrepancies and calculations understandable.
+
+**Mutual consent:** Keep final settlement decisions with the buyer and seller.
+
+**Payment confidence:** Initiate payment only after agreement.
+
+## Current Limitations
+
+This project is a hackathon prototype and is not intended for production financial transactions.
+
+- Vendor prices are manually entered and not independently verified.
+- Gemini analysis depends on API availability and quota.
+- Buyer and seller roles do not yet have secure authentication.
+- The platform does not provide escrow or legally binding arbitration.
+- PayPal transactions are demonstrated using Sandbox accounts.
+- Production deployment would require additional security, compliance, authorization, and operational safeguards.
+
+## Future Development
+
+Planned improvements include:
+
+- Live market pricing through supported retailer and supplier APIs.
+- PDF invoice and purchase order extraction.
+- AI-assisted product specification matching.
+- Secure buyer and seller authentication.
+- Real-time negotiation notifications.
+- Supplier price history and analytics.
+- Production-ready payment workflows.
+
+## Project Repository
+
+**GitHub:** https://github.com/sanjivinsmoke33/AccordPay-AI
+
+## License
+
+Licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+### AccordPay AI
+
+**Agree First. Pay With Confidence.**
+
+*Making invoice disputes more transparent, negotiations more structured, and payments more confident.*
